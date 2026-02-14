@@ -3,6 +3,7 @@ package com.gldhn.flywithfood;
 import com.gldhn.flywithfood.command.FlyCommand;
 import com.gldhn.flywithfood.config.FlyConfig;
 import com.gldhn.flywithfood.handler.FlyTickHandler;
+import com.gldhn.flywithfood.permission.PermissionManager;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -16,6 +17,7 @@ public class FlyWithFoodMod implements ModInitializer {
     @Override
     public void onInitialize() {
         FlyConfig.load();
+        PermissionManager.init();
         
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             FlyCommand.register(dispatcher);

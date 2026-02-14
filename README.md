@@ -8,15 +8,40 @@
 - **自动关闭**：当饥饿值低于阈值时，自动关闭飞行能力
 - **服务端模组**：仅需在服务端安装，客户端无需安装即可使用
 - **可配置**：支持自定义饥饿消耗速率、最低饥饿阈值和提示消息
+- **权限支持**：支持 LuckPerms 权限管理，无 LuckPerms 时使用 OP 权限
 
 ## 命令
 
-| 命令 | 描述 |
-|------|------|
-| `/fly` | 切换飞行状态（开/关） |
-| `/fly on` | 启用飞行 |
-| `/fly off` | 禁用飞行 |
-| `/fly reload` | 重载配置文件 |
+| 命令 | 描述 | 权限节点 |
+|------|------|----------|
+| `/fly` | 切换飞行状态（开/关） | `flywithfood.use` |
+| `/fly on` | 启用飞行 | `flywithfood.use` |
+| `/fly off` | 禁用飞行 | `flywithfood.use` |
+| `/fly reload` | 重载配置文件 | `flywithfood.reload` |
+
+## 权限节点
+
+| 权限节点 | 描述 | 默认 |
+|----------|------|------|
+| `flywithfood.use` | 允许使用飞行命令 | 所有人 |
+| `flywithfood.reload` | 允许重载配置文件 | 管理员 (OP) |
+
+### LuckPerms 配置示例
+
+如果安装了 LuckPerms，可以使用以下命令配置权限：
+
+```bash
+# 给玩家使用飞行权限
+/lp user <玩家名> permission set flywithfood.use true
+
+# 给玩家重载配置权限
+/lp user <玩家名> permission set flywithfood.reload true
+
+# 给权限组使用飞行权限
+/lp group <权限组> permission set flywithfood.use true
+```
+
+> **注意**：如果没有安装 LuckPerms，模组会自动使用 OP 权限系统。`flywithfood.use` 默认所有人可用，`flywithfood.reload` 需要 OP 权限。
 
 ## 配置文件
 
@@ -52,13 +77,15 @@
 - Fabric Loader 0.18.2+
 - Fabric API
 - Java 21+
+- LuckPerms（可选，用于权限管理）
 
 ## 安装方法
 
 1. 确保已安装 Fabric Loader 和 Fabric API
 2. 将模组 JAR 文件放入服务器的 `mods` 文件夹
-3. 启动服务器，模组会自动生成配置文件
-4. 根据需要修改配置文件
+3. （可选）安装 LuckPerms 以使用权限管理功能
+4. 启动服务器，模组会自动生成配置文件
+5. 根据需要修改配置文件
 
 ## License
 
