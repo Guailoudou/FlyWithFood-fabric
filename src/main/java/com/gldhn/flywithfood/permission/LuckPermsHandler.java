@@ -3,6 +3,7 @@ package com.gldhn.flywithfood.permission;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.model.user.User;
+import net.luckperms.api.node.Node;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 
@@ -16,10 +17,15 @@ public class LuckPermsHandler implements PermissionHandler {
 
     @Override
     public boolean hasPermission(ServerPlayer player, String permission, int defaultOpLevel) {
-        User user = luckPerms.getUserManager().getUser(player.getUUID());
-        if (user != null) {
-            return user.getCachedData().getPermissionData().checkPermission(permission).asBoolean();
+        try {
+            User user = luckPerms.getPlayerAdapter(ServerPlayer.class).getUser(player);
+            if (user != null) {
+                return user.getCachedData().getPermissionData().checkPermission(permission).asBoolean();
+            }
+        } catch (Exception e) {
+            com.gldhn.flywithfood.FlyWithFoodMod.LOGGER.warn("Failed to check permission via LuckPerms, falling back to OP check", e);
         }
+        
         if (defaultOpLevel == 0) {
             return true;
         }
