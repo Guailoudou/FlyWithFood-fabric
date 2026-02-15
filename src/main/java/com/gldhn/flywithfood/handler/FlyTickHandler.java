@@ -13,7 +13,7 @@ public class FlyTickHandler {
     public static void onServerTick(MinecraftServer server) {
         tickCounter++;
         
-        if (tickCounter < 20) return;
+        if (tickCounter < FlyConfig.hungerDrainIntervalTicks) return;
         tickCounter = 0;
 
         for (ServerPlayer player : server.getPlayerList().getPlayers()) {

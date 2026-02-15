@@ -9,6 +9,7 @@
 - **服务端模组**：仅需在服务端安装，客户端无需安装即可使用
 - **可配置**：支持自定义饥饿消耗速率、最低饥饿阈值和提示消息
 - **权限支持**：支持 LuckPerms 权限管理，无 LuckPerms 时使用 OP 权限
+- **可配置的饥饿消耗间隔**：可自定义饥饿值消耗的时间间隔
 
 ## 命令
 
@@ -51,6 +52,7 @@
 {
   "hungerDrainPerSecond": 1.0,
   "minHungerToFly": 6,
+  "hungerDrainIntervalTicks": 20,
   "messageFlyEnabled": "§a[FlyWithFood] 飞行已启用！飞行时会消耗饥饿值。",
   "messageFlyDisabled": "§c[FlyWithFood] 飞行已禁用！",
   "messageHungerLow": "§c[FlyWithFood] 饥饿值不足，飞行已自动关闭！",
@@ -62,8 +64,9 @@
 
 | 配置项 | 类型 | 默认值 | 描述 |
 |--------|------|--------|------|
-| `hungerDrainPerSecond` | double | 1.0 | 每秒消耗的饥饿值 |
+| `hungerDrainPerSecond` | double | 1.0 | 每次消耗的饥饿值 |
 | `minHungerToFly` | int | 6 | 允许飞行的最低饥饿值（饥饿值低于此值时自动关闭飞行） |
+| `hungerDrainIntervalTicks` | int | 20 | 饥饿值消耗的间隔（单位：刻，20刻=1秒） |
 | `messageFlyEnabled` | String | §a[FlyWithFood] 飞行已启用！... | 启用飞行时显示的消息 |
 | `messageFlyDisabled` | String | §c[FlyWithFood] 飞行已禁用！ | 禁用飞行时显示的消息 |
 | `messageHungerLow` | String | §c[FlyWithFood] 饥饿值不足... | 饥饿值不足时显示的消息 |

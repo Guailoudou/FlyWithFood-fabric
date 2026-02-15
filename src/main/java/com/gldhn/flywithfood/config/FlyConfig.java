@@ -15,6 +15,7 @@ public class FlyConfig {
 
     public static double hungerDrainPerSecond = 1.0;
     public static int minHungerToFly = 6;
+    public static int hungerDrainIntervalTicks = 20;
     
     public static String messageFlyEnabled = "§a[FlyWithFood] 飞行已启用！飞行时会消耗饥饿值。";
     public static String messageFlyDisabled = "§c[FlyWithFood] 飞行已禁用！";
@@ -33,6 +34,7 @@ public class FlyConfig {
             if (data != null) {
                 hungerDrainPerSecond = data.hungerDrainPerSecond;
                 minHungerToFly = data.minHungerToFly;
+                hungerDrainIntervalTicks = data.hungerDrainIntervalTicks;
                 if (data.messageFlyEnabled != null) messageFlyEnabled = data.messageFlyEnabled;
                 if (data.messageFlyDisabled != null) messageFlyDisabled = data.messageFlyDisabled;
                 if (data.messageHungerLow != null) messageHungerLow = data.messageHungerLow;
@@ -53,6 +55,7 @@ public class FlyConfig {
         ConfigData data = new ConfigData();
         data.hungerDrainPerSecond = hungerDrainPerSecond;
         data.minHungerToFly = minHungerToFly;
+        data.hungerDrainIntervalTicks = hungerDrainIntervalTicks;
         data.messageFlyEnabled = messageFlyEnabled;
         data.messageFlyDisabled = messageFlyDisabled;
         data.messageHungerLow = messageHungerLow;
@@ -69,6 +72,7 @@ public class FlyConfig {
     private static class ConfigData {
         double hungerDrainPerSecond = 1.0;
         int minHungerToFly = 6;
+        int hungerDrainIntervalTicks = 20;
         String messageFlyEnabled = "§a[FlyWithFood] 飞行已启用！飞行时会消耗饥饿值。";
         String messageFlyDisabled = "§c[FlyWithFood] 飞行已禁用！";
         String messageHungerLow = "§c[FlyWithFood] 饥饿值不足，飞行已自动关闭！";
