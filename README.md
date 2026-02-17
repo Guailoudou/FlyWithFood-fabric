@@ -10,6 +10,7 @@
 - **可配置**：支持自定义饥饿消耗速率、最低饥饿阈值和提示消息
 - **权限支持**：支持 LuckPerms 权限管理，无 LuckPerms 时使用 OP 权限
 - **可配置的饥饿消耗间隔**：可自定义饥饿值消耗的时间间隔
+- **饱和效果提醒**：当玩家身上有饱和药水效果且剩余时间不足时，自动提醒
 
 ## 命令
 
@@ -53,10 +54,12 @@
   "hungerDrainPerSecond": 1.0,
   "minHungerToFly": 6,
   "hungerDrainIntervalTicks": 20,
+  "saturationWarningSeconds": 10,
   "messageFlyEnabled": "§a[FlyWithFood] 飞行已启用！飞行时会消耗饥饿值。",
   "messageFlyDisabled": "§c[FlyWithFood] 飞行已禁用！",
   "messageHungerLow": "§c[FlyWithFood] 饥饿值不足，飞行已自动关闭！",
-  "messageConfigReloaded": "§a[FlyWithFood] 配置文件已重新加载！"
+  "messageConfigReloaded": "§a[FlyWithFood] 配置文件已重新加载！",
+  "messageSaturationWarning": "§e[FlyWithFood] 饱和效果剩余时间：%time%秒"
 }
 ```
 
@@ -67,12 +70,14 @@
 | `hungerDrainPerSecond` | double | 1.0 | 每次消耗的饥饿值 |
 | `minHungerToFly` | int | 6 | 允许飞行的最低饥饿值（饥饿值低于此值时自动关闭飞行） |
 | `hungerDrainIntervalTicks` | int | 20 | 饥饿值消耗的间隔（单位：刻，20刻=1秒） |
+| `saturationWarningSeconds` | int | 10 | 饱和效果剩余时间低于此值时开始提醒（单位：秒） |
 | `messageFlyEnabled` | String | §a[FlyWithFood] 飞行已启用！... | 启用飞行时显示的消息 |
 | `messageFlyDisabled` | String | §c[FlyWithFood] 飞行已禁用！ | 禁用飞行时显示的消息 |
 | `messageHungerLow` | String | §c[FlyWithFood] 饥饿值不足... | 饥饿值不足时显示的消息 |
 | `messageConfigReloaded` | String | §a[FlyWithFood] 配置文件已重新加载！ | 重载配置时显示的消息 |
+| `messageSaturationWarning` | String | §e[FlyWithFood] 饱和效果剩余时间：%time%秒 | 饱和效果提醒消息（%time%会被替换为剩余秒数） |
 
-> **提示**：消息支持 Minecraft 颜色代码，如 `§a`（绿色）、`§c`（红色）等
+> **提示**：消息支持 Minecraft 颜色代码，如 `§a`（绿色）、`§c`（红色）、`§e`（黄色）等
 
 ## 安装要求
 

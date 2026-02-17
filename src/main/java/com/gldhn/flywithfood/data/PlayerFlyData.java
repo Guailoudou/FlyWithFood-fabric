@@ -9,11 +9,7 @@ public class PlayerFlyData {
     private static final Map<UUID, Boolean> FLY_ENABLED_MAP = new ConcurrentHashMap<>();
 
     public static boolean isFlyEnabled(Player player) {
-        if(player.getAbilities().mayfly) {
-            FLY_ENABLED_MAP.put(player.getUUID(), true);
-        }else {
-            FLY_ENABLED_MAP.put(player.getUUID(), false);
-        }
+        checkIsFly(player);
         return FLY_ENABLED_MAP.getOrDefault(player.getUUID(), false);
     }
 
@@ -23,5 +19,12 @@ public class PlayerFlyData {
 
     public static void removePlayer(Player player) {
         FLY_ENABLED_MAP.remove(player.getUUID());
+    }
+    public static void checkIsFly(Player player) {
+        if(player.getAbilities().mayfly && !player.isCreative() && !player.isSpectator()) {
+            FLY_ENABLED_MAP.put(player.getUUID(), true);
+        }else {
+            FLY_ENABLED_MAP.put(player.getUUID(), false);
+        }
     }
 }

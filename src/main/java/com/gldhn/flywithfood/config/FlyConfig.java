@@ -16,11 +16,13 @@ public class FlyConfig {
     public static double hungerDrainPerSecond = 1.0;
     public static int minHungerToFly = 6;
     public static int hungerDrainIntervalTicks = 20;
+    public static int saturationWarningSeconds = 10;
     
     public static String messageFlyEnabled = "§a[FlyWithFood] 飞行已启用！飞行时会消耗饥饿值。";
     public static String messageFlyDisabled = "§c[FlyWithFood] 飞行已禁用！";
     public static String messageHungerLow = "§c[FlyWithFood] 饥饿值不足，飞行已自动关闭！";
     public static String messageConfigReloaded = "§a[FlyWithFood] 配置文件已重新加载！";
+    public static String messageSaturationWarning = "§e[FlyWithFood] 饱和效果剩余时间：%time%秒";
 
     public static void load() {
         if (!Files.exists(CONFIG_PATH)) {
@@ -35,10 +37,12 @@ public class FlyConfig {
                 hungerDrainPerSecond = data.hungerDrainPerSecond;
                 minHungerToFly = data.minHungerToFly;
                 hungerDrainIntervalTicks = data.hungerDrainIntervalTicks;
+                saturationWarningSeconds = data.saturationWarningSeconds;
                 if (data.messageFlyEnabled != null) messageFlyEnabled = data.messageFlyEnabled;
                 if (data.messageFlyDisabled != null) messageFlyDisabled = data.messageFlyDisabled;
                 if (data.messageHungerLow != null) messageHungerLow = data.messageHungerLow;
                 if (data.messageConfigReloaded != null) messageConfigReloaded = data.messageConfigReloaded;
+                if (data.messageSaturationWarning != null) messageSaturationWarning = data.messageSaturationWarning;
             }
         } catch (Exception e) {
             FlyWithFoodMod.LOGGER.error("Failed to load config, using defaults", e);
@@ -56,10 +60,12 @@ public class FlyConfig {
         data.hungerDrainPerSecond = hungerDrainPerSecond;
         data.minHungerToFly = minHungerToFly;
         data.hungerDrainIntervalTicks = hungerDrainIntervalTicks;
+        data.saturationWarningSeconds = saturationWarningSeconds;
         data.messageFlyEnabled = messageFlyEnabled;
         data.messageFlyDisabled = messageFlyDisabled;
         data.messageHungerLow = messageHungerLow;
         data.messageConfigReloaded = messageConfigReloaded;
+        data.messageSaturationWarning = messageSaturationWarning;
 
         try {
             Files.createDirectories(CONFIG_PATH.getParent());
@@ -73,9 +79,11 @@ public class FlyConfig {
         double hungerDrainPerSecond = 1.0;
         int minHungerToFly = 6;
         int hungerDrainIntervalTicks = 20;
+        int saturationWarningSeconds = 10;
         String messageFlyEnabled = "§a[FlyWithFood] 飞行已启用！飞行时会消耗饥饿值。";
         String messageFlyDisabled = "§c[FlyWithFood] 飞行已禁用！";
         String messageHungerLow = "§c[FlyWithFood] 饥饿值不足，飞行已自动关闭！";
         String messageConfigReloaded = "§a[FlyWithFood] 配置文件已重新加载！";
+        String messageSaturationWarning = "§e[FlyWithFood] 饱和效果剩余时间：%time%秒";
     }
 }
